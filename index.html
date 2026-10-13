@@ -1,0 +1,93 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Tasks</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>My Tasks.</h1>
+            <p>A little progress every day.</p>
+        </header>
+
+        
+<form id="task-form">
+    <input
+        type="text"
+        id="task-input"
+        placeholder="What do you need to do?"
+        autocomplete="off"
+    >
+    
+<input
+    type="date"
+    id="due-date-input"
+    class="priority-select"
+    aria-label="Task due date"
+>
+
+
+    <select id="priority-input" class="priority-select" aria-label="Task priority">
+        <option value="low">Low</option>
+        <option value="medium" selected>Medium</option>
+        <option value="high">High</option>
+    </select>
+
+    <button type="submit">Add Task</button>
+</form>
+
+
+        <div class="task-summary">
+            <span id="total-tasks">0 tasks</span>
+            <span id="completed-tasks">0 completed</span>
+        </div>
+        
+<div class="progress-section">
+    <div class="progress-labels">
+        <span>YOUR PROGRESS</span>
+        <span id="progress-percent">0%</span>
+    </div>
+
+    <div
+        class="progress-track"
+        role="progressbar"
+        aria-label="Tasks completed"
+        aria-valuemin="0"
+        aria-valuemax="100"
+        aria-valuenow="0"
+        id="progress-bar"
+    >
+        <div id="progress-fill"></div>
+    </div>
+</div>
+
+        
+<div class="task-filters">
+    <button type="button" class="filter-button active" data-filter="all">
+        All
+    </button>
+
+    <button type="button" class="filter-button" data-filter="active">
+        Active
+    </button>
+
+    <button type="button" class="filter-button" data-filter="completed">
+        Completed
+    </button>
+</div>
+
+
+        <ul id="task-list"></ul>
+
+        <p id="empty-message">No tasks yet. Add one to get started!</p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

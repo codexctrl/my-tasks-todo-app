@@ -1,0 +1,535 @@
+
+/* 1. Basic page settings */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+    background: #111218;
+    color: #f4f4f8;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 24px;
+}
+
+/* 2. Main container */
+.container {
+    width: 100%;
+    max-width: 560px;
+    background: #1b1c25;
+    border: 1px solid #30313e;
+    border-radius: 20px;
+    padding: 32px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+/* 3. Heading */
+header {
+    margin-bottom: 28px;
+}
+
+header h1 {
+    font-size: 36px;
+    letter-spacing: -1px;
+    margin-bottom: 8px;
+}
+
+header p {
+    color: #a4a5b5;
+    font-size: 15px;
+}
+
+/* 4. Input form */
+#task-form {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 24px;
+}
+
+#task-input {
+    flex: 1;
+    min-width: 0;
+    padding: 14px 16px;
+    background: #252632;
+    border: 1px solid #3a3b4a;
+    border-radius: 12px;
+    color: #ffffff;
+    font-size: 14px;
+    outline: none;
+}
+
+#task-input::placeholder {
+    color: #858698;
+}
+
+#task-input:focus {
+    border-color: #9b8afb;
+    box-shadow: 0 0 0 3px rgba(155, 138, 251, 0.12);
+}
+
+/* 5. Add button */
+#task-form button {
+    padding: 14px 18px;
+    background: #9b8afb;
+    color: #171323;
+    border: none;
+    border-radius: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+}
+
+#task-form button:hover {
+    background: #b0a3ff;
+    transform: translateY(-1px);
+}
+
+/* 6. Task counters */
+.task-summary {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    color: #a4a5b5;
+    font-size: 13px;
+    margin-bottom: 18px;
+}
+
+/* 7. Task list */
+#task-list {
+    list-style: none;
+}
+
+#task-list li {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: #252632;
+    border: 1px solid #343543;
+    padding: 15px;
+    border-radius: 12px;
+    margin-bottom: 10px;
+    overflow-wrap: anywhere;
+}
+
+#task-list li span {
+    flex: 1;
+}
+
+/* 8. Empty state */
+#empty-message {
+    color: #858698;
+    font-size: 14px;
+    text-align: center;
+    padding: 28px 8px;
+}
+
+/* 9. Small screens */
+@media (max-width: 480px) {
+    body {
+        padding: 14px;
+    }
+
+    .container {
+        padding: 22px 18px;
+    }
+
+    header h1 {
+        font-size: 30px;
+    }
+
+    #task-form {
+        flex-direction: column;
+    }
+
+    #task-form button {
+        width: 100%;
+    }
+}
+
+/* Custom task checkbox */
+#task-list input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #77758f;
+    border-radius: 6px;
+    background: #1b1c25;
+    cursor: pointer;
+    display: grid;
+    place-content: center;
+    transition: background 0.2s, border-color 0.2s;
+}
+
+#task-list input[type="checkbox"]:checked {
+    background: #9b8afb;
+    border-color: #9b8afb;
+}
+
+#task-list input[type="checkbox"]:checked::after {
+    content: "✓";
+    color: #171323;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+/* Polished Delete button */
+.delete-button {
+    flex-shrink: 0;
+    background: #392630;
+    color: #ffb4c0;
+    border: 1px solid #553441;
+    border-radius: 9px;
+    padding: 8px 12px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s;
+}
+
+.delete-button:hover {
+    background: #57303d;
+    border-color: #9d5065;
+}
+
+.delete-button:focus-visible,
+#task-list input[type="checkbox"]:focus-visible {
+    outline: 2px solid #b0a3ff;
+    outline-offset: 3px;
+}
+
+/* Subtle hover effect for task cards */
+#task-list li {
+    transition: border-color 0.2s, background 0.2s;
+}
+
+#task-list li:hover {
+    border-color: #514b70;
+}
+
+/* Task filter buttons */
+.task-filters {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 20px;
+    padding: 5px;
+    background: #15161e;
+    border: 1px solid #30313e;
+    border-radius: 12px;
+}
+
+.filter-button {
+    flex: 1;
+    padding: 10px 8px;
+    border: none;
+    border-radius: 8px;
+    background: transparent;
+    color: #a4a5b5;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+}
+
+.filter-button:hover {
+    color: #ffffff;
+    background: #252632;
+}
+
+.filter-button.active {
+    background: #9b8afb;
+    color: #171323;
+}
+
+.filter-button:focus-visible {
+    outline: 2px solid #b0a3ff;
+    outline-offset: 2px;
+}
+
+/* Edit button */
+.edit-button {
+    flex-shrink: 0;
+    background: #292840;
+    color: #c8c0ff;
+    border: 1px solid #484365;
+    border-radius: 9px;
+    padding: 8px 12px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s;
+}
+
+.edit-button:hover {
+    background: #3b375b;
+    border-color: #8c7de0;
+}
+
+.edit-button:focus-visible {
+    outline: 2px solid #b0a3ff;
+    outline-offset: 3px;
+}
+
+/* Inline task editor */
+.edit-input {
+    flex: 1;
+    min-width: 0;
+    width: 100%;
+    padding: 9px 10px;
+    background: #171821;
+    color: #f1efff;
+    border: 1px solid #9b8afb;
+    border-radius: 8px;
+    font: inherit;
+    outline: none;
+}
+
+.edit-input:focus {
+    box-shadow: 0 0 0 3px rgb(155 138 251 / 15%);
+}
+
+/* Save button */
+.save-button {
+    flex-shrink: 0;
+    padding: 8px 12px;
+    background: #2c3d35;
+    color: #a9e4bd;
+    border: 1px solid #41634f;
+    border-radius: 9px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.save-button:hover {
+    background: #365242;
+}
+
+/* Cancel button */
+.cancel-button {
+    flex-shrink: 0;
+    padding: 8px 12px;
+    background: #392630;
+    color: #ffb4c0;
+    border: 1px solid #553441;
+    border-radius: 9px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.cancel-button:hover {
+    background: #57303d;
+}
+
+.save-button:focus-visible,
+.cancel-button:focus-visible,
+.edit-input:focus-visible {
+    outline: 2px solid #b0a3ff;
+    outline-offset: 3px;
+}
+
+/* Task progress section */
+.progress-section {
+    margin: 20px 0;
+}
+
+.progress-labels {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    color: #a4a5b5;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+#progress-percent {
+    color: #b8aaff;
+    font-size: 13px;
+    letter-spacing: 0;
+}
+
+.progress-track {
+    width: 100%;
+    height: 8px;
+    overflow: hidden;
+    background: #292a37;
+    border: 1px solid #373747;
+    border-radius: 20px;
+}
+
+#progress-fill {
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg, #806cf0, #b4a5ff);
+    border-radius: 20px;
+    transition: width 0.35s ease;
+}
+
+/* Task priority labels */
+.priority-badge {
+    flex-shrink: 0;
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+}
+
+.priority-low {
+    background: #25362f;
+    color: #a9e4bd;
+}
+
+.priority-medium {
+    background: #403623;
+    color: #f3d18a;
+}
+
+.priority-high {
+    background: #432832;
+    color: #ffb4c0;
+}
+
+/* Priority selector */
+.priority-select {
+    min-width: 0;
+    padding: 9px;
+    background: #1b1c25;
+    color: #e8e5ff;
+    border: 1px solid #414153;
+    border-radius: 9px;
+    font: inherit;
+    font-size: 12px;
+}
+
+.priority-select:focus-visible {
+    outline: 2px solid #b0a3ff;
+    outline-offset: 2px;
+}
+
+/* Task due date */
+.due-date-label {
+    flex-shrink: 0;
+    color: #aaa8bd;
+    font-size: 11px;
+    white-space: nowrap;
+}
+
+#task-list li {
+    flex-wrap: wrap;
+}
+
+@media (max-width: 480px) {
+    .due-date-label {
+        font-size: 10px;
+    }
+}
+
+/* Final responsive layout improvements */
+* {
+    box-sizing: border-box;
+}
+
+html {
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+}
+
+.container {
+    width: min(100% - 32px, 680px);
+    margin: 40px auto;
+}
+
+/* Keep task cards usable on smaller screens */
+#task-list li {
+    min-width: 0;
+    gap: 10px;
+}
+
+#task-list li span {
+    overflow-wrap: anywhere;
+}
+
+#task-list li .priority-badge,
+#task-list li .due-date-label {
+    white-space: nowrap;
+}
+
+/* Form controls should fit smaller screens */
+#task-form input,
+#task-form select {
+    min-width: 0;
+    max-width: 100%;
+}
+
+@media (max-width: 600px) {
+    .container {
+        width: calc(100% - 24px);
+        margin: 20px auto;
+        padding: 20px;
+    }
+
+    #task-form {
+        flex-wrap: wrap;
+    }
+
+    #task-form input[type="text"] {
+        flex: 1 1 100%;
+        width: 100%;
+    }
+
+    #task-form select {
+        flex: 1 1 0;
+    }
+
+    #task-form button {
+        flex: 1 1 100%;
+    }
+
+    #task-list li {
+        flex-wrap: wrap;
+    }
+
+    #task-list li > span:first-of-type {
+        flex: 1 1 120px;
+        min-width: 0;
+    }
+
+    .edit-button,
+    .delete-button,
+    .save-button,
+    .cancel-button {
+        padding: 8px 10px;
+    }
+}
+
+@media (max-width: 360px) {
+    .container {
+        padding: 14px;
+    }
+
+    .task-filters {
+        gap: 4px;
+    }
+
+    .filter-button {
+        padding: 9px 4px;
+        font-size: 12px;
+    }
+}
+
