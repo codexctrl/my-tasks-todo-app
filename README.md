@@ -1,6 +1,9 @@
 # My Tasks — To-Do List App
 
 A clean, dark-themed to-do list website built using HTML, CSS, and JavaScript.
+## Preview
+
+![To-Do List App Preview](todo-preview.png)
 
 ## Features
 
